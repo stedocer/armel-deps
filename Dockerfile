@@ -147,23 +147,9 @@ RUN [ "cross-build-end" ]
 
 
 
-FROM builder AS armel-zerotier
-RUN [ "cross-build-start" ]
-WORKDIR /
-RUN git clone --depth=1 https://github.com/zerotier/ZeroTierOne.git && \
-    cd ZeroTierOne && \
-    make \
-    CC=gcc-4.9 \
-    CXX=g++-4.9
-RUN cp /ZeroTierOne/zerotier-one /cust/sbin/zerotier-one && \
-    strip /cust/sbin/zerotier-one
-RUN [ "cross-build-end" ]
-
-
 FROM scratch
 WORKDIR /
 COPY --from=builder /cust /cust/
 COPY --from=armel-lighttpd /cust /cust/
 COPY --from=armel-mosquitto /cust /cust/
 COPY --from=armel-lua /cust /cust/
-COPY --from=armel-zerotier /cust /cust/
