@@ -18,9 +18,9 @@ RUN apt-get update && \
     make \
     screen \
     unzip \
-    upx-ucl \
     wget \
     zlib1g-dev && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 RUN mkdir -p \
     /cust/bin \
