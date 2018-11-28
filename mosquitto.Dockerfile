@@ -24,12 +24,8 @@ RUN git clone --depth=1 https://github.com/eclipse/mosquitto.git && \
     WITH_UUID=no \
     WITH_WEBSOCKETS=no
 RUN cp -L /mosquitto/src/mosquitto /cust/sbin/mosquitto && \
-    cp -L /mosquitto/lib/libmosquitto.so* /cust/lib/ && \
+    cp -a /mosquitto/lib/libmosquitto.so* /cust/lib/ && \
     strip /cust/lib/libmosquitto.so* && \
     strip /cust/sbin/mosquitto
-RUN upx-ucl \
-    --best \
-    --ultra-brute \
-    /cust/sbin/mosquitto
 RUN chmod u+x /cust/sbin/mosquitto
 RUN [ "cross-build-end" ]
