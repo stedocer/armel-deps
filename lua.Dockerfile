@@ -22,6 +22,7 @@ RUN luarocks install compat52 && \
     luarocks install luamqttc && \
     luarocks install lzlib \
       ZLIB_LIBDIR=/lib/arm-linux-gnueabi && \
+    luarocks install rs232 && \
     luarocks install serpent && \
     luarocks install sha1 && \
     luarocks install vstruct && \
